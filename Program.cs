@@ -73,7 +73,7 @@ public class Hand {
 
 //where cards will interact
 public class Field { 
-    public Player PlayerTurn { get; set; }
+    public Player PlayerTurn { get; set; } //maybe unneeded, managed in Game object instead
     public Card[,] CardPosition { get; set; }
     public Field(int gameState, Player playerTurn)
     {
@@ -128,10 +128,13 @@ public class Game {
         StartBattle,
         PlayerTurn,
         AITurn,
-        BattleDamage
+        BattleDamage,
+        Win
     }
+    public Field GameField { get; set; }
+    public Player player1 { get; set; } //set as user for the time being
+    public Player player2 { get; set; } //set as CPU for the time being
     public States GameState { get; set; }  //menu, deck selection, deck creation, play, ???
-
     public Game(States gameState) { 
         GameState = gameState;
     }
@@ -179,6 +182,14 @@ public class Game {
         //process Player and CPU health
         //check for win conditions
         //call opposite gamestate from 'turn'
+    }
+
+    public void processWin(Player winner) {
+        //Win gamestate
+        //display win message
+        //wait for user input to continue
+        //delete field and player objects
+        //call to start to return to menu
     }
 
     //checking to ensure only valid commands are used
